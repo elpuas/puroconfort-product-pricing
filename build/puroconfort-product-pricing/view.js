@@ -1,0 +1,1 @@
+console.log("Hello World! (from puroconfort-puroconfort-product-pricing block)");
