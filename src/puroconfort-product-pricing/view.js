@@ -27,14 +27,14 @@ const formatPrice = ( value ) => {
 	const hasDecimals = Math.abs( number % 1 ) > 0;
 	const locale = document.documentElement.lang || 'es-MX';
 
-	return `$${ number.toLocaleString( locale, {
+	return `₡${ number.toLocaleString( locale, {
 		minimumFractionDigits: hasDecimals ? 2 : 0,
 		maximumFractionDigits: hasDecimals ? 2 : 0,
 	} ) }`;
 };
 
 // Namespace must match data-wp-interactive in render.php, or directives won't bind.
-store( 'puroconfort-pricing', {
+const { state, actions } = store( 'puroconfort-pricing', {
 	state: {
 		quantity: 1,
 		price_single: 0,
@@ -47,17 +47,15 @@ store( 'puroconfort-pricing', {
 	actions: {
 		init() {
 			const context = getContext();
-			const { state } = this;
 
 			state.quantity = Number( context.quantity ) || 1;
 			state.price_single = Number( context.price_single ) || 0;
 			state.price_bulk = Number( context.price_bulk ) || 0;
 			state.productName = context.productName || '';
 
-			this.actions.update();
+			actions.update();
 		},
 		update( event ) {
-			const { state } = this;
 			const next = event
 				? Number.parseInt( event.target.value, 10 )
 				: state.quantity;

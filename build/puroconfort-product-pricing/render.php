@@ -26,7 +26,7 @@ $price_bulk   = is_numeric( $price_bulk_raw ) ? (float) $price_bulk_raw : 0.0;
 
 $format_price = static function ( $value ) {
 	$decimals = ( $value - floor( $value ) ) > 0 ? 2 : 0;
-	return '$' . number_format_i18n( $value, $decimals );
+	return '₡' . number_format_i18n( $value, $decimals );
 };
 
 $input_id = wp_unique_id( 'puroconfort-qty-' );

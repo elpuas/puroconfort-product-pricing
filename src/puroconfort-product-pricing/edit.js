@@ -3,8 +3,6 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
-import { __ } from '@wordpress/i18n';
-
 /**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
@@ -12,6 +10,13 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps } from '@wordpress/block-editor';
+
+/**
+ * Server-side rendering for dynamic blocks in the editor.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-server-side-render/
+ */
+import ServerSideRender from '@wordpress/server-side-render';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -31,11 +36,8 @@ import './editor.scss';
  */
 export default function Edit() {
 	return (
-		<p { ...useBlockProps() }>
-			{ __(
-				'Puro Confort Product Pricing – hello from the editor!',
-				'puroconfort-product-pricing'
-			) }
-		</p>
+		<div { ...useBlockProps() }>
+			<ServerSideRender block="puroconfort/puroconfort-product-pricing" />
+		</div>
 	);
 }
