@@ -8,8 +8,8 @@ return array(
 		'version' => '0.1.0',
 		'title' => 'Puro Confort Product Pricing',
 		'category' => 'design',
-		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'icon' => 'cart',
+		'description' => 'Bloque para seleccionar cantidad y mostrar precios por volumen de un producto.',
 		'example' => array(
 			
 		),

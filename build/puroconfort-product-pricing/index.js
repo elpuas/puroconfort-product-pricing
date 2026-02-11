@@ -185,7 +185,7 @@ module.exports = window["wp"]["serverSideRender"];
   \****************************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"puroconfort/puroconfort-product-pricing","version":"0.1.0","title":"Puro Confort Product Pricing","category":"design","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false,"interactivity":true},"textdomain":"puroconfort-product-pricing","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScriptModule":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"puroconfort/puroconfort-product-pricing","version":"0.1.0","title":"Puro Confort Product Pricing","category":"design","icon":"cart","description":"Bloque para seleccionar cantidad y mostrar precios por volumen de un producto.","example":{},"supports":{"html":false,"interactivity":true},"textdomain":"puroconfort-product-pricing","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScriptModule":"file:./view.js"}');
 
 /***/ }
 
