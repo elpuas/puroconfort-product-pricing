@@ -134,6 +134,20 @@ const {
       console.log('Unit price applied:', state.unit_price_applied);
       console.log('Total (raw):', state.total);
       console.log('State totalFormatted:', state.totalFormatted);
+    },
+    increment() {
+      actions.update({
+        target: {
+          value: state.quantity + 1
+        }
+      });
+    },
+    decrement() {
+      actions.update({
+        target: {
+          value: state.quantity - 1
+        }
+      });
     }
     // TODO: Integrate Click to Chat / wa.me URL here.
   }

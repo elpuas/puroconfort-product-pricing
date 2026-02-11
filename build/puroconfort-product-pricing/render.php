@@ -69,15 +69,29 @@ $context = array(
 		<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>">
 			<?php esc_html_e( 'Cantidad', 'puroconfort-product-pricing' ); ?>
 		</label>
-		<input
-			id="<?php echo esc_attr( $input_id ); ?>"
-			type="number"
-			min="1"
-			step="1"
-			value="1"
-			data-wp-bind--value="state.quantity"
-			data-wp-on--input="actions.update"
-		/>
+		<div class="puroconfort-product-pricing__stepper" aria-label="<?php esc_attr_e( 'Cantidad', 'puroconfort-product-pricing' ); ?>">
+			<button
+				type="button"
+				class="puroconfort-product-pricing__stepper-btn"
+				data-wp-on--click="actions.decrement"
+				aria-label="<?php esc_attr_e( 'Disminuir cantidad', 'puroconfort-product-pricing' ); ?>"
+			>
+				<span aria-hidden="true">−</span>
+			</button>
+			<span
+				id="<?php echo esc_attr( $input_id ); ?>"
+				class="puroconfort-product-pricing__stepper-value"
+				data-wp-text="state.quantity"
+			>1</span>
+			<button
+				type="button"
+				class="puroconfort-product-pricing__stepper-btn"
+				data-wp-on--click="actions.increment"
+				aria-label="<?php esc_attr_e( 'Aumentar cantidad', 'puroconfort-product-pricing' ); ?>"
+			>
+				<span aria-hidden="true">+</span>
+			</button>
+		</div>
 	</div>
 
 	<div class="puroconfort-product-pricing__total">

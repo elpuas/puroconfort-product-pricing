@@ -10,3 +10,31 @@
 	color: #fff;
 	padding: 2px;
 }
+
+.puroconfort-product-pricing__stepper {
+	align-items: center;
+	display: flex;
+	gap: 12px;
+}
+
+.puroconfort-product-pricing__stepper-btn {
+	align-items: center;
+	background: transparent;
+	border: 1px solid #e8e8e8;
+	border-radius: 8px;
+	color: #333;
+	display: flex;
+	height: 32px;
+	justify-content: center;
+	line-height: 1;
+	padding: 0;
+	width: 32px;
+}
+
+.puroconfort-product-pricing__stepper-value {
+	color: #333;
+	font-size: 14px;
+	line-height: 20px;
+	min-width: 32px;
+	text-align: center;
+}
