@@ -33,6 +33,9 @@ $input_id = wp_unique_id( 'puroconfort-qty-' );
 
 $whatsapp_phone = isset( $attributes['whatsappPhone'] ) ? preg_replace( '/[^0-9]/', '', $attributes['whatsappPhone'] ) : '';
 
+$page_title = wp_strip_all_tags( get_the_title( $post_id ) );
+$page_url   = get_permalink( $post_id );
+
 $context = array(
 	'quantity'    => 1,
 	'price_single' => $price_single,
@@ -121,6 +124,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				type="button"
 				class="wp-block-button__link has-main-color has-primary-alt-background-color has-text-color has-background has-link-color wp-element-button"
 				data-whatsapp-phone="<?php echo esc_attr( $whatsapp_phone ); ?>"
+				data-page-title="<?php echo esc_attr( $page_title ); ?>"
+				data-page-url="<?php echo esc_attr( $page_url ); ?>"
 				data-wp-on--click="actions.openWhatsApp"
 				<?php echo empty( $whatsapp_phone ) ? 'disabled' : ''; ?>
 			>

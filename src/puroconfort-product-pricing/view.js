@@ -91,11 +91,20 @@ const { state, actions } = store( 'puroconfort-pricing', {
 				return;
 			}
 
+			const pageTitle = btn.dataset.pageTitle || '';
+			const pageUrl   = btn.dataset.pageUrl   || '';
+
 			const message =
-				`Hola, me interesa realizar un pedido:\n` +
-				`- Cantidad: ${ state.quantity } unidad(es)\n` +
-				`- Total: ${ formatPrice( state.total ) }\n\n` +
-				`Para que tu pedido salga más rápido, por favor indícanos tu nombre, teléfono, correo, dirección y cantidad de unidades que necesitas. Pronto me pondré en contacto contigo.`;
+				`${ pageTitle }\n` +
+				`${ pageUrl }\n\n` +
+				`Cantidad seleccionada: ${ state.quantity }\n` +
+				`Total estimado: ${ formatPrice( state.total ) }\n\n` +
+				`Para que tu pedido salga más rápido, por favor indícanos:\n` +
+				`- Nombre completo: \n` +
+				`- Teléfono: \n` +
+				`- Correo electrónico: \n` +
+				`- Dirección de entrega: \n\n` +
+				`Cantidad confirmada: `;
 
 			const url = `https://wa.me/${ phone }?text=${ encodeURIComponent( message ) }`;
 			window.open( url, '_blank', 'noopener,noreferrer' );
