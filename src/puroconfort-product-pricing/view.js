@@ -80,6 +80,25 @@ const { state, actions } = store( 'puroconfort-pricing', {
 		decrement() {
 			actions.update( { target: { value: state.quantity - 1 } } );
 		},
-		// TODO: Integrate Click to Chat / wa.me URL here.
+		openWhatsApp( event ) {
+			const btn = event.target.closest( '[data-whatsapp-phone]' );
+			const phone = btn ? btn.dataset.whatsappPhone : '';
+
+			if ( ! phone ) {
+				console.warn(
+					'puroconfort-pricing: WhatsApp phone number is not configured for this block.'
+				);
+				return;
+			}
+
+			const message =
+				`Hola, me interesa realizar un pedido:\n` +
+				`- Cantidad: ${ state.quantity } unidad(es)\n` +
+				`- Total: ${ formatPrice( state.total ) }\n\n` +
+				`Para que tu pedido salga más rápido, por favor indícanos tu nombre, teléfono, correo, dirección y cantidad de unidades que necesitas. Pronto me pondré en contacto contigo.`;
+
+			const url = `https://wa.me/${ phone }?text=${ encodeURIComponent( message ) }`;
+			window.open( url, '_blank', 'noopener,noreferrer' );
+		},
 	},
 } );

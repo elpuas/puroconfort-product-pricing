@@ -13,6 +13,12 @@ return array(
 		'example' => array(
 			
 		),
+		'attributes' => array(
+			'whatsappPhone' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
 		'supports' => array(
 			'html' => false,
 			'interactivity' => true

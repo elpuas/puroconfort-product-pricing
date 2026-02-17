@@ -31,6 +31,8 @@ $format_price = static function ( $value ) {
 
 $input_id = wp_unique_id( 'puroconfort-qty-' );
 
+$whatsapp_phone = isset( $attributes['whatsappPhone'] ) ? preg_replace( '/[^0-9]/', '', $attributes['whatsappPhone'] ) : '';
+
 $context = array(
 	'quantity'    => 1,
 	'price_single' => $price_single,
@@ -115,7 +117,13 @@ $wrapper_attributes = get_block_wrapper_attributes(
 
 	<div class="wp-block-buttons is-layout-flex">
 		<div class="wp-block-button has-custom-width wp-block-button__width-100">
-			<button type="button" class="wp-block-button__link has-main-color has-primary-alt-background-color has-text-color has-background has-link-color wp-element-button">
+			<button
+				type="button"
+				class="wp-block-button__link has-main-color has-primary-alt-background-color has-text-color has-background has-link-color wp-element-button"
+				data-whatsapp-phone="<?php echo esc_attr( $whatsapp_phone ); ?>"
+				data-wp-on--click="actions.openWhatsApp"
+				<?php echo empty( $whatsapp_phone ) ? 'disabled' : ''; ?>
+			>
 				<?php esc_html_e( 'Comprar', 'puroconfort-product-pricing' ); ?>
 			</button>
 		</div>

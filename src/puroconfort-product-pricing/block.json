@@ -8,6 +8,12 @@
 	"icon": "cart",
 	"description": "Bloque para seleccionar cantidad y mostrar precios por volumen de un producto.",
 	"example": {},
+	"attributes": {
+		"whatsappPhone": {
+			"type": "string",
+			"default": ""
+		}
+	},
 	"supports": {
 		"html": false,
 		"interactivity": true

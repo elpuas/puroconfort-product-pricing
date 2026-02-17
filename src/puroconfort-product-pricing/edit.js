@@ -9,7 +9,8 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, TextControl } from '@wordpress/components';
 
 /**
  * Server-side rendering for dynamic blocks in the editor.
@@ -32,12 +33,36 @@ import './editor.scss';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  *
+ * @param {Object} props               Block props.
+ * @param {Object} props.attributes    Block attributes.
+ * @param {Function} props.setAttributes Setter for block attributes.
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit( { attributes, setAttributes } ) {
+	const { whatsappPhone } = attributes;
+
 	return (
-		<div { ...useBlockProps() }>
-			<ServerSideRender block="puroconfort/puroconfort-product-pricing" />
-		</div>
+		<>
+			<InspectorControls>
+				<PanelBody title="WhatsApp">
+					<TextControl
+						label="WhatsApp Number"
+						help="Digits only, example: 50689816449"
+						value={ whatsappPhone }
+						onChange={ ( value ) =>
+							setAttributes( {
+								whatsappPhone: value.replace( /[^0-9]/g, '' ),
+							} )
+						}
+					/>
+				</PanelBody>
+			</InspectorControls>
+			<div { ...useBlockProps() }>
+				<ServerSideRender
+					block="puroconfort/puroconfort-product-pricing"
+					attributes={ attributes }
+				/>
+			</div>
+		</>
 	);
 }
