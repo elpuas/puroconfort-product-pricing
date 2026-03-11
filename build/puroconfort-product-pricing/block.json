@@ -12,6 +12,14 @@
     "whatsappPhone": {
       "type": "string",
       "default": ""
+    },
+    "priceSingle": {
+      "type": "number",
+      "default": 0
+    },
+    "priceBulk": {
+      "type": "number",
+      "default": 0
     }
   },
   "supports": {

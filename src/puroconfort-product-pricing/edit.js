@@ -10,7 +10,7 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl } from '@wordpress/components';
+import { PanelBody, TextControl, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 
 /**
  * Server-side rendering for dynamic blocks in the editor.
@@ -39,11 +39,33 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { whatsappPhone } = attributes;
+	const { whatsappPhone, priceSingle, priceBulk } = attributes;
 
 	return (
 		<>
 			<InspectorControls>
+				<PanelBody title="Precios">
+					<NumberControl
+						label="Precio unitario (1–11 unidades)"
+						help="Precio por unidad para pedidos menores a 12."
+						value={ priceSingle }
+						min={ 0 }
+						spinControls="native"
+						onChange={ ( value ) =>
+							setAttributes( { priceSingle: Number( value ) || 0 } )
+						}
+					/>
+					<NumberControl
+						label="Precio mayoreo (12+ unidades)"
+						help="Precio por unidad para pedidos de 12 o más."
+						value={ priceBulk }
+						min={ 0 }
+						spinControls="native"
+						onChange={ ( value ) =>
+							setAttributes( { priceBulk: Number( value ) || 0 } )
+						}
+					/>
+				</PanelBody>
 				<PanelBody title="WhatsApp">
 					<TextControl
 						label="WhatsApp Number"

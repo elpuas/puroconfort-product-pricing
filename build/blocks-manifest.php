@@ -17,6 +17,14 @@ return array(
 			'whatsappPhone' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'priceSingle' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'priceBulk' => array(
+				'type' => 'number',
+				'default' => 0
 			)
 		),
 		'supports' => array(

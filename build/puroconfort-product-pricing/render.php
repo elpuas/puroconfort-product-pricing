@@ -18,11 +18,15 @@ if ( ! $post_id ) {
 	return;
 }
 
+// Use block attributes as the source of truth; fall back to post meta for existing posts.
+$attr_price_single = isset( $attributes['priceSingle'] ) && is_numeric( $attributes['priceSingle'] ) ? (float) $attributes['priceSingle'] : null;
+$attr_price_bulk   = isset( $attributes['priceBulk'] ) && is_numeric( $attributes['priceBulk'] ) ? (float) $attributes['priceBulk'] : null;
+
 $price_single_raw = get_post_meta( $post_id, 'price_single', true );
 $price_bulk_raw   = get_post_meta( $post_id, 'price_bulk', true );
 
-$price_single = is_numeric( $price_single_raw ) ? (float) $price_single_raw : 0.0;
-$price_bulk   = is_numeric( $price_bulk_raw ) ? (float) $price_bulk_raw : 0.0;
+$price_single = $attr_price_single !== null ? $attr_price_single : ( is_numeric( $price_single_raw ) ? (float) $price_single_raw : 0.0 );
+$price_bulk   = $attr_price_bulk   !== null ? $attr_price_bulk   : ( is_numeric( $price_bulk_raw )   ? (float) $price_bulk_raw   : 0.0 );
 
 $format_price = static function ( $value ) {
 	$decimals = ( $value - floor( $value ) ) > 0 ? 2 : 0;

@@ -111,12 +111,3 @@ Do NOT:
 - add Forminator-specific PHP
 
 ---
-
-## WhatsApp Integration (Future)
-
-Do NOT implement WhatsApp or Click to Chat yet.
-
-Leave clear TODO comments such as:
-
-```js
-// TODO: Integrate Click to Chat / wa.me URL here
