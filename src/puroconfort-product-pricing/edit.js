@@ -39,7 +39,7 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { whatsappPhone, priceSingle, priceBulk } = attributes;
+	const { whatsappPhone, priceSingle, priceBulk, formPageUrl } = attributes;
 
 	return (
 		<>
@@ -75,6 +75,16 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( {
 								whatsappPhone: value.replace( /[^0-9]/g, '' ),
 							} )
+						}
+					/>
+				</PanelBody>
+				<PanelBody title="Formulario de pedido">
+					<TextControl
+						label="URL de la página del formulario"
+						help="Página donde está el formulario de Forminator, ejemplo: /formulario-pedido/"
+						value={ formPageUrl }
+						onChange={ ( value ) =>
+							setAttributes( { formPageUrl: value } )
 						}
 					/>
 				</PanelBody>

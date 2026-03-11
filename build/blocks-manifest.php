@@ -25,6 +25,10 @@ return array(
 			'priceBulk' => array(
 				'type' => 'number',
 				'default' => 0
+			),
+			'formPageUrl' => array(
+				'type' => 'string',
+				'default' => ''
 			)
 		),
 		'supports' => array(

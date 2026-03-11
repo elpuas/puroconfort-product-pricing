@@ -20,6 +20,10 @@
 		"priceBulk": {
 			"type": "number",
 			"default": 0
+		},
+		"formPageUrl": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

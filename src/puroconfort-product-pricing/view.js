@@ -109,5 +109,23 @@ const { state, actions } = store( 'puroconfort-pricing', {
 			const url = `https://wa.me/${ phone }?text=${ encodeURIComponent( message ) }`;
 			window.open( url, '_blank', 'noopener,noreferrer' );
 		},
+		openEmailForm( event ) {
+			const btn = event.target.closest( '[data-form-page-url]' );
+			const formPageUrl = btn ? btn.dataset.formPageUrl : '';
+
+			if ( ! formPageUrl ) {
+				console.warn(
+					'puroconfort-pricing: Form page URL is not configured for this block.'
+				);
+				return;
+			}
+
+			const url = new URL( formPageUrl, window.location.origin );
+			url.searchParams.set( 'product', state.productName );
+			url.searchParams.set( 'quantity', state.quantity );
+			url.searchParams.set( 'total', state.total );
+
+			window.location.href = url.href;
+		},
 	},
 } );
