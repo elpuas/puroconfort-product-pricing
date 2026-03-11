@@ -1,113 +1,107 @@
-Examples:
-- `feature/interactivity-pricing`
-- `fix/forminator-hidden-fields`
+# AGENTS.md
 
-- Commits must be atomic and scoped
-- Do NOT squash unless explicitly requested
-- Do NOT perform git operations unless the prompt explicitly asks for them
+This repository contains the **Puro Confort Product Pricing** WordPress plugin.
 
----
+The plugin provides a single **dynamic Gutenberg block** used to calculate tiered product pricing and prepare order data.
 
-## Block Purpose
-Implement a product pricing selector with tiered unit pricing based on quantity.
-
-This is NOT a checkout.
-This is NOT WooCommerce.
-This block only calculates pricing and prepares data for submission.
+It is **not WooCommerce** and **not a checkout system**.
 
 ---
 
-## Data Source (ACF)
+## Project Context
 
-Pricing data comes from ACF post meta on the current Product post.
+The full technical description of the block implementation is documented here:
 
-Expected fields:
+/Users/alfredonavas/Local Sites/puro-confort/app/public/wp-content/plugins/puroconfort-product-pricing/.context/puro-confort-product-block.md
 
-- `price_single` (number)
-  Unit price for quantities 1–11
-
-- `price_bulk` (number)
-  Unit price for quantities 12+
-
-Values are stored as **numbers only**.
-Currency formatting happens in the frontend.
+Agents must read that document before modifying the block.
 
 ---
 
-## Business Rule (Mandatory)
+## Development Skills
 
-There is exactly ONE rule:
+The development conventions used in this project are defined in these skills:
 
-- If quantity < 12 → use `price_single`
-- If quantity ≥ 12 → use `price_bulk`
+- /Users/alfredonavas/Local Sites/puro-confort/app/public/wp-content/plugins/puroconfort-product-pricing/.github/skills/wp-block-development
+- /Users/alfredonavas/Local Sites/puro-confort/app/public/wp-content/plugins/puroconfort-product-pricing/.github/skills/wp-interactivity-api
+- /Users/alfredonavas/Local Sites/puro-confort/app/public/wp-content/plugins/puroconfort-product-pricing/.github/skills/wp-plugin-development
 
-Users NEVER select a pricing tier manually.
-
----
-
-## Block UI (Strict Contract)
-
-The block MUST render the following UI, in this exact order:
-
-1. `Precio unitario: $X c/u`
-2. `Precio 12+: $Y c/u`
-3. Quantity input:
-   - `type="number"`
-   - `min="1"`
-   - `step="1"`
-   - default value `1`
-4. `Total: $Z`
-5. Primary button labeled **Ordenar**
-
-Do NOT add:
-- checkboxes
-- selects
-- multiple quantity inputs
+Agents must follow the patterns defined in those files.
 
 ---
 
-## Architecture Rules
+## Architecture Summary
 
-- The block is a **dynamic block**
-- Markup is rendered in `render.php`
-- Interactivity and calculations happen in `view.js`
-- PHP provides data only
-- JavaScript handles all interaction and logic
+The plugin contains a **dynamic Gutenberg block**.
 
-Do NOT duplicate pricing logic between PHP and JS.
+General responsibilities:
 
----
+PHP (`render.php`)
+- resolve pricing data
+- provide Interactivity API context
+- render block markup
 
-## Interactivity API
+JavaScript (`view.js`)
+- manage reactive state
+- calculate pricing
+- update UI
+- handle WhatsApp interaction
 
-Using the **WordPress Interactivity API** is strongly preferred.
-
-If Interactivity API is NOT used:
-- You MUST explain why in code comments.
-
-State must minimally include:
-- quantity
-- price_single
-- price_bulk
-- unit_price_applied
-- total
+The **WordPress Interactivity API** is used for all frontend reactivity.
 
 ---
 
-## Forminator Integration (Phase 1)
+## Documentation Rule
 
-The block must expose hidden inputs with the following names:
+After completing any task, create a context file documenting the work.
 
-- `product_name`
-- `quantity`
-- `unit_price_applied`
-- `total`
+Location:
 
-These values must stay in sync with the UI.
+.context/
 
-Do NOT:
-- create Forminator forms
-- configure submissions
-- add Forminator-specific PHP
+Each file should describe:
+
+- what was implemented
+- which files were modified
+- relevant notes for future work
 
 ---
+
+## Git Rules
+
+Branch examples:
+
+- feature/interactivity-pricing
+- fix/forminator-hidden-fields
+
+Rules:
+
+- commits must be atomic
+- commits must be scoped
+- do not squash unless requested
+- do not perform git operations unless explicitly asked
+
+---
+
+## Development Rule
+
+Do not introduce new architecture.
+
+Before implementing changes:
+
+1. read the block context document
+2. review the relevant skills
+3. analyze the existing implementation
+
+Esto queda mucho más alineado con cómo trabajan los agentes:
+	•	AGENTS.md = mapa
+	•	.context/*.md = documentación real
+	•	.github/skills/* = reglas de implementación
+
+Sin duplicar información.
+
+Si quieres, en el siguiente paso te puedo mostrar una mejora muy potente que usan equipos que trabajan con agentes: agregar un archivo pequeño llamado:
+
+.context/architecture-map.md
+
+que literalmente le dice al agente dónde está cada cosa en 10 líneas, y reduce aún más los errores cuando navega el repo.
